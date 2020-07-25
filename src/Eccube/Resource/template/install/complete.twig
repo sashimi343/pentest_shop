@@ -1,0 +1,33 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends 'frame.twig' %}
+
+{% set current = 6 %}
+
+{% block main %}
+<div id="main" class="step7">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>{{ 'install.completed'|trans }}</h1>
+                </div>
+                <div class="column">
+                    <h2>{{ 'install.access_admin_page'|trans}}</h2>
+                    <p>{{ 'install.perform_initial_setting'|trans }}</p>
+                    <div class="btn_area"><a href="{{ admin_url }}" class="btn btn-primary btn-block btn-lg">{{ 'install.go_to_admin_page'|trans }}</a></div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+</div>
+{% endblock %}

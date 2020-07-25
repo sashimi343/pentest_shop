@@ -1,0 +1,78 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends 'frame.twig' %}
+
+{% set current = 1 %}
+
+{% block main %}
+    <div id="main" class="step1">
+        <div class="main_inner">
+            <div class="main_content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                          {% if app.session.flashBag.has('eccube.install.danger') %}
+                          {% for message in app.session.flashBag.get('eccube.install.danger') %}
+                          <div class="row">
+                            <div class="alert alert-danger alert-dismissable">
+                              <button type="button" class="close" data-dismiss="alert"><span class="alert-close" aria-hidden="true">&times;</span></button>
+                              <svg class="cb cb-info-circle"> <use xlink:href="#cb-info-circle" /></svg> {{ message|trans }} <a href="https://www.ec-cube.net/product/system.php">{{ 'install.system_requirement'|trans }}</a>
+                            </div>
+                          </div>
+                          {% endfor %}
+                          {% endif %}
+                          {% if app.session.flashBag.has('eccube.install.warning') %}
+                          {% for message in app.session.flashBag.get('eccube.install.warning') %}
+                          <div class="row">
+                            <div class="alert alert-warning alert-dismissable">
+                              <button type="button" class="close" data-dismiss="alert"><span class="alert-close" aria-hidden="true">&times;</span></button>
+                              <svg class="cb cb-info-circle"> <use xlink:href="#cb-info-circle" /></svg> {{ message|trans }}
+                            </div>
+                          </div>
+                          {% endfor %}
+                          {% endif %}
+                            {#info section#}
+                            {% if app.session.flashBag.has('eccube.install.info') %}
+                                {% for message in app.session.flashBag.get('eccube.install.info') %}
+                                    <div class="row">
+                                        <div class="alert alert-info alert-dismissable alert-section">
+                                            <button type="button" class="close" data-dismiss="alert"><span class="alert-close" aria-hidden="true">&times;</span></button>
+                                            <svg class="cb cb-info-circle"> <use xlink:href="#cb-info-circle" /></svg> {{ message|trans }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="page-header">
+                                <h1>{{ 'install.welcom'|trans }}</h1>
+                            </div>
+                            <form name="form1" id="form1" method="post" action="{{ path('install_step1') }}">
+                                {{ form_widget(form._token) }}
+                                <div class="intro">
+                                    <svg class="cb cb-inbox"> <use xlink:href="#cb-inbox" /></svg>
+                                    {{ 'install.start_eccube_installation'|trans|raw }}
+                                </div>
+                                <div class="note_box">
+                                    <p>
+                                        {{ 'install.cooperation_of_providing_information'|trans|raw }}
+                                    </p>
+                                    {{ form_widget(form.agree, { 'label': 'install.accept_infomation_provision' }) }}
+                                </div>
+                                <ul class="btn_area">
+                                    <li><button type="submit" class="btn btn-primary btn-block btn-lg">{{ 'install.next'|trans }}</button></li>
+                                </ul>
+                            </form>
+                        </div><!-- /.col -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
